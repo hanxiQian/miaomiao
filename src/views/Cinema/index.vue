@@ -1,7 +1,7 @@
 <template>
     <div id="main">
-        <Header title="喵喵影院"/>
-        <div id="content">
+        <Header  title="电影影院"/>
+                <div id="content">
 			<div class="cinema_menu">
 				<div class="city_switch">
 					全城 <i class="iconfont icon-lower-triangle"></i>
@@ -13,27 +13,24 @@
 					特色 <i class="iconfont icon-lower-triangle"></i>
 				</div>
 			</div>
-            <CiList/>   
+            <ClList/>   
         </div> 
-        <Tabbar/>
+        <Footer />
     </div>
 </template>
-
 <script>
-import Header from "../../components/Header";
-import Tabbar from "../../components/TabBar";
-import CiList from "../../components/CiList";
-
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import ClList from '@/components/ClList';
 export default {
-    name: "Cinema",
-    components: {
+    name:'Cinema',
+    components:{
         Header,
-        Tabbar,
-        CiList
-    }             
+        Footer,
+        ClList
+    }
 }
 </script>
-
 <style scoped>
 #content .cinema_menu{ width: 100%; height: 45px; border-bottom:1px solid #e6e6e6; display: flex; justify-content:space-around; align-items:center; background:white;}    
 </style>

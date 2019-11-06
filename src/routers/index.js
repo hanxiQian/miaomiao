@@ -7,15 +7,16 @@ import cinemaRouter from './cinema'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes: [
-    movieRouter,
-    mineRouter,
-    cinemaRouter,
-    {
-      path: "/*",
-      redirect: "/movie"
-    }
-  ]
+    mode: 'history',
+    base:process.env.BASE_URL,
+    routes:[
+        movieRouter,
+        mineRouter,
+        cinemaRouter,
+        {
+            path:'/*',
+            redirect: '/movie'
+            //redirect页面重定向
+        }
+    ]
 })

@@ -1,28 +1,23 @@
 <template>
     <div id="main">
-        <Header title="我的喵喵"/>
-        <div id="content">
-            <Login/>
-        </div>    
-        <Tabbar/>
+        <Header  title="我的电影"/>
+        <Login />
+        <Footer />
     </div>
 </template>
-
 <script>
-import Header from "../../components/Header";
-import Tabbar from "../../components/TabBar";
-import Login from "../../components/Login"
-
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import Login from '@/components/Login'
 export default {
-    name: "Mine",
-    components: {
+    name:'Mine',
+    components:{
         Header,
-        Tabbar,
+        Footer,
         Login
-    }             
+    }
 }
 </script>
-
 <style scoped>
-    
+
 </style>
