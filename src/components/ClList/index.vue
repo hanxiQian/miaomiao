@@ -1,28 +1,69 @@
 <template>
 			<div class="cinema_body">
-				<!-- <Loading v-if="isLoading"/>
-				<Scroller v-else> -->
 					<ul>
-						<li>
+						<li v-for="item in cinemaList" :key="item.id">
 							<div>
-								<span></span>
-								<span class="q"><span class="price">30</span> 元起</span>
+								<span>{{item.nm}}</span>
+								<span class="q"><span class="price">{{item.sellPrice}}</span> 元起</span>
 							</div>
 							<div class="address">
-								<span></span>
-								<span></span>
+								<span>{{item.addr}}</span>
+								<span>{{item.distance}}</span>
 							</div>
 							<div class="card">
-								<div></div>
+								<div v-for="(num,key) in item.tag" v-if="num === 1" :key="key" :class="key |classCard">{{key | formatCard}}</div>
 							</div>
 						</li>
 					</ul>
-				<!-- </Scroller> -->
 			</div>
 </template>
 <script>
 export default {
-    name:'ClList'
+	name:'ClList',
+	data (){
+		return {
+			cinemaList : []
+		}
+	},
+	mounted() {
+		this.axios.get("/api/cinemaList?cityId=10").then((res)=>{
+
+			var msg = res.data.msg;
+			if(msg === 'ok') {
+				this.cinemaList = res.data.data.cinemas;
+			}
+		});
+	},
+	filters : {
+		formatCard(key){
+			var card=[
+				{key : 'allowRefund',value: '改签'},
+				{key : 'endorse',value: '退'},
+				{key : 'sell',value : '折扣卡'},
+				{key : 'snack' , value : '小吃'}
+			];
+			for(var i=0;i<card.length;i++){
+				if(card[i].key === key){
+					return card[i].value;
+				}
+			}
+			return '';
+		},
+		classCard(key){
+						var card=[
+				{key : 'allowRefund',value: 'or'},
+				{key : 'endorse',value: 'or'},
+				{key : 'sell',value : 'bl'},
+				{key : 'snack' , value : 'bl'}
+			];
+			for(var i=0;i<card.length;i++){
+				if(card[i].key === key){
+					return card[i].value;
+				}
+			}
+			return '';
+		}
+	}
 }
 </script>
 <style scoped>
