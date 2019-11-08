@@ -13,7 +13,7 @@
 						<p>{{item.showInfo}}</p>
 					</div>
 					<div class="btn_mall">
-						购票
+						购票拉
 					</div>
 				</li>
 			</ul>
