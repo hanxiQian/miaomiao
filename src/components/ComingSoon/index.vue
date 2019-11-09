@@ -1,7 +1,7 @@
 <template>
 			<div class="movie_body">
-				<!-- <Loading v-if="isLoading"/>
-				<Scroller v-else> -->
+				<Loading v-if="isLoading"/>
+				<Scroller v-else>
 					<ul>
 						<li v-for="item in comingList" :key="item.id">
 							<div class="pic_show"><img :src="item.img | setWH('128.180')" alt=""></div>
@@ -16,7 +16,7 @@
 							</div>
 						</li>
 					</ul>
-				<!-- </Scroller>	 -->
+				</Scroller>	
 			</div>
 </template>
 <script>
@@ -24,7 +24,8 @@ export default {
 	name: "ComingSoon",
 	data(){
 		return{
-			comingList:[]
+			comingList:[],
+			isLoading:true
 		}
 	},
 	mounted(){
@@ -33,6 +34,7 @@ export default {
 			if(msg === 'ok'){
 // console.log(res)
 this.comingList = res.data.data.comingList;
+this.isLoading=false;
 			}
 		})
 	}

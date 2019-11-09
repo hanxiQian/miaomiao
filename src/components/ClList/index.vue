@@ -1,5 +1,6 @@
 <template>
 			<div class="cinema_body">
+				<Scroller>
 					<ul>
 						<li v-for="item in cinemaList" :key="item.id">
 							<div>
@@ -15,6 +16,7 @@
 							</div>
 						</li>
 					</ul>
+				</Scroller>
 			</div>
 </template>
 <script>
@@ -22,11 +24,16 @@ export default {
 	name:'ClList',
 	data (){
 		return {
-			cinemaList : []
+			cinemaList : [],
+			prevCityId : -1
 		}
 	},
-	mounted() {
-		this.axios.get("/api/cinemaList?cityId=10").then((res)=>{
+	activated() {
+		 var cityId = this.$store.state.city.id;  //如果prevCityId === cityId 没有切换城市就不用触发return，反之触发向下执行
+//  console.log(cityId)
+if( this.prevCityId === cityId){return;}  //注意这里是响应式数据 一定得加this.prevCityId
+        this.isLoading =true;
+		this.axios.get("/api/cinemaList?cityId="+cityId).then((res)=>{
 
 			var msg = res.data.msg;
 			if(msg === 'ok') {
